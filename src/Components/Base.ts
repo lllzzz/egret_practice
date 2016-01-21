@@ -1,7 +1,7 @@
 module Components {
 	/**
 	 * @author laozhu
-	 * 图形化组件基类，处理屏幕自适应，组件大小位置自适应等问题 
+	 * 图形化组件基类，处理屏幕自适应，组件大小位置自适应等问题
 	 * 生成实例前，必须先初始化设计稿
 	 */
 	export class Base extends egret.Sprite
@@ -11,22 +11,22 @@ module Components {
 
         protected static designWidth: number = 0;
         protected static designHeight: number = 0;
-        
+
         protected static realWidth: number = 0;
         protected static realHeight: number = 0;
-        
+
         protected static topWhite: number = 0;
         protected static leftWhite: number = 0;
-        
+
         public static standard: number;
         public static HEIGHT_BASE = 0;
         public static WIDTH_BASE = 1;
-        
+
         private type: number = 0;
         public static TYPE_DEFAULT: number = 0;
         public static TYPE_BACKGROUND: number = 1;
-        
-        public constructor(width: number, height: number, left: number, top: number, type: number = Base.TYPE_DEFAULT) 
+
+        public constructor(width: number, height: number, left: number, top: number, type: number = Base.TYPE_DEFAULT)
 		{
             super();
             if (Base.designWidth == 0) {
@@ -39,11 +39,11 @@ module Components {
                 this.setPossion(left, top);
             }
 		}
-		
+
 		/**
 		 * 初始化设计稿高宽，设定拉伸比例等参数
-		 */ 
-        public static init(designWidth: number, designHeight: number): void 
+		 */
+        public static init(designWidth: number, designHeight: number): void
         {
             Base.stageWidth = egret.MainContext.instance.stage.stageWidth;
             Base.stageHeight = egret.MainContext.instance.stage.stageHeight;
@@ -60,11 +60,17 @@ module Components {
                 Base.realHeight = (Base.designHeight / Base.designWidth) * Base.realWidth;
                 Base.topWhite = (Base.stageHeight - Base.realHeight) / 2;
             }
+            if (DEBUG) {
+                console.log(Base.stageWidth, Base.stageHeight);
+                console.log(Base.designWidth, Base.designHeight);
+                console.log(Base.realWidth, Base.realHeight);
+                console.log(Base.leftWhite, Base.topWhite);
+            }
         }
-		
+
         /**
          * 设定高宽
-         */ 
+         */
 		public setSize(width: number, height: number): void
 		{
     	    if (Base.standard === Base.HEIGHT_BASE) {
@@ -79,12 +85,12 @@ module Components {
                 this.x = - Base.leftWhite;
     	    }
 		}
-		
+
 		/**
 		 * 设置背景，默认居中延展
-		 */ 
-        private setBackGround(width: number, height: number): void 
-        { 
+		 */
+        private setBackGround(width: number, height: number): void
+        {
             if (Base.standard === Base.HEIGHT_BASE) {
                 this.width = (width / Base.designWidth) * Base.stageWidth;
                 this.height = height * this.width / width;
@@ -93,12 +99,12 @@ module Components {
                 this.width = width * this.height / height;
             }
         }
-		
+
         /**
          * 设置位置
-         */ 
-        public setPossion(left: number, top: number): void 
-        { 
+         */
+        public setPossion(left: number, top: number): void
+        {
             if (Base.standard === Base.HEIGHT_BASE) {
                 this.y = (top / Base.designHeight) * Base.realHeight;
                 this.x = Base.leftWhite + (left / Base.designWidth) * Base.realWidth;
