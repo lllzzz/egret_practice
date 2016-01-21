@@ -1,6 +1,8 @@
 module Components {
 	/**
-	 * @laozhu 
+	 * @author laozhu
+	 * 图形化组件基类，处理屏幕自适应，组件大小位置自适应等问题 
+	 * 生成实例前，必须先初始化设计稿
 	 */
 	export class Base extends egret.Sprite
 	{
