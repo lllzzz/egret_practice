@@ -22,22 +22,14 @@ module Components {
         public static HEIGHT_BASE = 0;
         public static WIDTH_BASE = 1;
 
-        private type: number = 0;
-        public static TYPE_DEFAULT: number = 0;
-        public static TYPE_BACKGROUND: number = 1;
-
-        public constructor(width: number, height: number, left: number, top: number, type: number = Base.TYPE_DEFAULT)
+        public constructor(width: number, height: number, left: number, top: number)
 		{
             super();
             if (Base.designWidth == 0) {
                 throw ('[ERROR] You need run Base.init(width, height)');
             }
-            if(type == Base.TYPE_BACKGROUND) {
-                this.setBackGround(width, height);
-            } else {
-                this.setSize(width, height);
-                this.setPossion(left, top);
-            }
+            this.setSize(width, height);
+            this.setPossion(left, top);
 		}
 
 		/**
@@ -85,20 +77,6 @@ module Components {
                 this.x = - Base.leftWhite;
     	    }
 		}
-
-		/**
-		 * 设置背景，默认居中延展
-		 */
-        private setBackGround(width: number, height: number): void
-        {
-            if (Base.standard === Base.HEIGHT_BASE) {
-                this.width = (width / Base.designWidth) * Base.stageWidth;
-                this.height = height * this.width / width;
-            } else {
-                this.height = (height / Base.designHeight) * Base.stageHeight;
-                this.width = width * this.height / height;
-            }
-        }
 
         /**
          * 设置位置
