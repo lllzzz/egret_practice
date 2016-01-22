@@ -9,7 +9,9 @@ var game_file_list = [
 	"libs/modules/tween/tween.js",
 	"libs/modules/res/res.js",
 	"bin-debug/Components/Base.js",
-	"bin-debug/Components/Test.js",
+	"bin-debug/Components/Box.js",
+	"bin-debug/Components/Matrix.js",
+	"bin-debug/Game/Matrix.js",
 	"bin-debug/LoadingUI.js",
 	"bin-debug/Main.js",
 	//----auto game_file_list end----

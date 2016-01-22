@@ -22,7 +22,7 @@ module Components {
         public static HEIGHT_BASE = 0;
         public static WIDTH_BASE = 1;
 
-        public constructor(width: number, height: number, left: number, top: number)
+        public constructor(width: number, height: number, left: number, top: number, private hasParent: boolean = false)
 		{
             super();
             if (Base.designWidth == 0) {
@@ -85,10 +85,12 @@ module Components {
         {
             if (Base.standard === Base.HEIGHT_BASE) {
                 this.y = (top / Base.designHeight) * Base.realHeight;
-                this.x = Base.leftWhite + (left / Base.designWidth) * Base.realWidth;
+                this.x = (left / Base.designWidth) * Base.realWidth;
+                if (this.hasParent) this.x += Base.leftWhite; 
             } else {
                 this.x = (left / Base.designWidth) * Base.realWidth;
-                this.y = Base.topWhite + (top / Base.designHeight) * Base.realHeight;
+                this.y = (top / Base.designHeight) * Base.realHeight;
+                if (this.hasParent) this.y += Base.topWhite;
             }
         }
 	}
