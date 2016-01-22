@@ -86,11 +86,11 @@ module Components {
             if (Base.standard === Base.HEIGHT_BASE) {
                 this.y = (top / Base.designHeight) * Base.realHeight;
                 this.x = (left / Base.designWidth) * Base.realWidth;
-                if (this.hasParent) this.x += Base.leftWhite; 
+                if (!this.hasParent) this.x += Base.leftWhite; 
             } else {
                 this.x = (left / Base.designWidth) * Base.realWidth;
                 this.y = (top / Base.designHeight) * Base.realHeight;
-                if (this.hasParent) this.y += Base.topWhite;
+                if (!this.hasParent) this.y += Base.topWhite;
             }
         }
 	}

@@ -6,9 +6,10 @@ module Components {
 	 */
 	export class Matrix extends Base
 	{
-        public boxStore: Box[] = [];
+        public boxStore: Components.Box[] = [];
         public constructor(public n: number, geometry: {
-            width: number, height: number, left: number, top: number }) 
+            width: number, height: number, left: number, top: number },
+            newBoxCallback: Function = null) 
         {
             super(geometry.width, geometry.height, geometry.left, geometry.top);
             var boxStore: Box[] = [];
@@ -19,7 +20,12 @@ module Components {
                     _j = i % n;
                 var _x = (boxWidth + 1) * _j,
                     _y = (boxHeight + 1) * _i;
-                var _box = new Box(i, 0xaaaaaa, { width: boxWidth, height: boxHeight, left: _x, top: _y });
+                var _box;
+                if (newBoxCallback !== null) {
+                    _box = newBoxCallback.call(this, i, { width: boxWidth, height: boxHeight, left: _x, top: _y })
+                } else {
+                    _box = new Box(i, 0xaaaaaa, { width: boxWidth, height: boxHeight, left: _x, top: _y });
+                }
                 boxStore.push(_box);
                 this.addChild(_box);
             }
@@ -29,9 +35,9 @@ module Components {
         /**
          * 获取一行
          */ 
-        public getLine(num: number): Box[]
+        public getLine(num: number): Contract.Box[]
         {
-            var line: Box[] = [],
+            var line: Contract.Box[] = [],
                 indexStart = num * this.n;
             for(var i = 0; i < this.n; i++) {
                 line.push(this.boxStore[i + indexStart]);
@@ -42,9 +48,9 @@ module Components {
         /**
          * 获取一列
          */ 
-        public getVertical(num: number): Box[]
+        public getVertical(num: number): Contract.Box[]
         {
-            var vertical: Box[] = [],
+            var vertical: Contract.Box[] = [],
                 indexStart = num;
             for (var i = 0; i < this.n; i++) {
                 vertical.push(this.boxStore[indexStart + i * this.n]);
@@ -64,7 +70,7 @@ module Components {
         /**
          * 下标->Index
          */ 
-        public getBox(i: number, j: number): Box
+        public getBox(i: number, j: number): Contract.Box
         {
             var index = i * this.n + j;
             return this.boxStore[index];
