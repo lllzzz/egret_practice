@@ -6,26 +6,22 @@ module Components {
 	 */
 	export class Matrix extends Base
 	{
-        public boxStore: Components.Box[] = [];
-        public constructor(public n: number, geometry: {
+        public boxStore: Box[] = [];
+        public constructor(public m:number, public n: number, geometry: {
             width: number, height: number, left: number, top: number },
-            newBoxCallback: Function = null) 
+            newBoxCallback: Function) 
         {
             super(geometry.width, geometry.height, geometry.left, geometry.top);
             var boxStore: Box[] = [];
             var boxWidth: number = geometry.width / n - 1,
-                boxHeight: number = geometry.height / n - 1;
-            for(var i = 0; i < n * n; i++) {
+                boxHeight: number = geometry.height / m - 1;
+            for(var i = 0; i < m * n; i++) {
                 var _i = Math.floor(i / n),
                     _j = i % n;
+                console.log(_i, _j)
                 var _x = (boxWidth + 1) * _j,
                     _y = (boxHeight + 1) * _i;
-                var _box;
-                if (newBoxCallback !== null) {
-                    _box = newBoxCallback.call(this, i, { width: boxWidth, height: boxHeight, left: _x, top: _y })
-                } else {
-                    _box = new Box(i, 0xaaaaaa, { width: boxWidth, height: boxHeight, left: _x, top: _y });
-                }
+                var _box = newBoxCallback.call(this, i, { width: boxWidth, height: boxHeight, left: _x, top: _y })
                 boxStore.push(_box);
                 this.addChild(_box);
             }
@@ -35,9 +31,9 @@ module Components {
         /**
          * 获取一行
          */ 
-        public getLine(num: number): Contract.Box[]
+        public getLine(num: number): Box[]
         {
-            var line: Contract.Box[] = [],
+            var line: Box[] = [],
                 indexStart = num * this.n;
             for(var i = 0; i < this.n; i++) {
                 line.push(this.boxStore[i + indexStart]);
@@ -48,11 +44,11 @@ module Components {
         /**
          * 获取一列
          */ 
-        public getVertical(num: number): Contract.Box[]
+        public getVertical(num: number): Box[]
         {
-            var vertical: Contract.Box[] = [],
+            var vertical: Box[] = [],
                 indexStart = num;
-            for (var i = 0; i < this.n; i++) {
+            for (var i = 0; i < this.m; i++) {
                 vertical.push(this.boxStore[indexStart + i * this.n]);
             }
             return vertical;
@@ -64,16 +60,17 @@ module Components {
         public getPosition(x: number, y: number): number[]
         { 
             if(x < this.x || x > this.x + this.width || y < this.y || y > this.y + this.height) return [];
-            return [Math.floor((y - this.y) / (this.height / this.n)), Math.floor((x - this.x) / (this.width / this.n))];
+            return [Math.floor((y - this.y) / (this.height / this.m)), Math.floor((x - this.x) / (this.width / this.n))];
         }
         
         /**
          * 下标->Index
          */ 
-        public getBox(i: number, j: number): Contract.Box
+        public getBox(i: number, j: number): Box
         {
             var index = i * this.n + j;
             return this.boxStore[index];
         }
+        
 	}
 }

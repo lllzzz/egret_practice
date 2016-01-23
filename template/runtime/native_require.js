@@ -11,9 +11,10 @@ var game_file_list = [
 	"bin-debug/Components/Base.js",
 	"bin-debug/Components/Box.js",
 	"bin-debug/Components/Matrix.js",
-	"bin-debug/Contract/Box.js",
-	"bin-debug/Game/Matrix.js",
+	"bin-debug/Game/Block.js",
+	"bin-debug/Game/BlockType.js",
 	"bin-debug/Game/MBox.js",
+	"bin-debug/Game/Matrix.js",
 	"bin-debug/LoadingUI.js",
 	"bin-debug/Main.js",
 	//----auto game_file_list end----

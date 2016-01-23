@@ -4,14 +4,15 @@ module Components {
 	 * @author 
 	 *
 	 */
-	export class Box extends Base implements Contract.Box
+	export class Box extends Base
 	{
     	
         public constructor(public id: number, public color: number, geometry: {
-            width: number, height: number, left: number, top: number}) 
+            width: number, height: number, left: number, top: number
+        }, alpha: number = 1) 
 		{
             super(geometry.width, geometry.height, geometry.left, geometry.top, true);
-            this.draw(this.color);
+            this.draw(this.color, alpha);
             
             if (DEBUG) {
                 var text: egret.TextField = new egret.TextField();
@@ -24,13 +25,11 @@ module Components {
             }
 		}
 		
-		protected draw(color)
+		protected draw(color, alpha = 1)
         {
-            this.graphics.beginFill(color);
+            this.graphics.beginFill(color, alpha);
             this.graphics.drawRoundRect(0, 0, this.width, this.height, this.width * 0.3, this.height * 0.3);
             this.graphics.endFill();
         }
-        
-        public changeColor(color) { }
 	}
 }

@@ -8,15 +8,20 @@ module Game {
 	{
 		public constructor() 
 		{
-            super(4, { width: 110, height: 110, left: 5, top: 45 }, function(id, geometry) {
+            super(4, 2, { width: 110 / 2, height: 110, left: 5, top: 45 }, (id, geometry) => {
                 return new Game.MBox(id, 0xaaaaff, geometry);
             });
             this.touchEnabled = true;
             this.addEventListener(egret.TouchEvent.TOUCH_TAP, (e: egret.TouchEvent) =>
             {
                 var [i, j] = this.getPosition(e.stageX, e.stageY),
-                    box = this.getBox(i, j);
-                box.changeColor(0xaaff33);
+                    box = <MBox>this.getBox(i, j);
+                if(box.hasChanged) {
+                    box.clear();
+                }
+                else {
+                    box.changeColor(0xaaff33);
+                }
             }, this);
 		}
 	}

@@ -4,8 +4,9 @@ module Game {
 	 * @author 
 	 *
 	 */
-    export class MBox extends Components.Box implements Contract.Box
+    export class MBox extends Components.Box
 	{
+        public hasChanged: boolean = false;
         public constructor(id: number, color: number, geometry: any) 
 		{
             super(id, color, geometry);
@@ -14,11 +15,13 @@ module Game {
 		public clear()
 		{
             this.changeColor(this.color);
+            this.hasChanged = false;
 		}
 		
 		public changeColor(color) 
 		{
             this.draw(color);
+            this.hasChanged = true;
 		}
 	}
 }

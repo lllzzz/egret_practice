@@ -116,8 +116,12 @@ class Main extends egret.DisplayObjectContainer {
     private createGameScene():void 
     {
         Components.Base.init(120, 200); // 初始化设计稿高宽
-        var obj = new Game.Matrix();
-        this.addChild(obj);
+//        var obj = new Game.Matrix();
+//        this.addChild(obj);
+        var type = new Game.BlockType(1);
+//        console.log(type.m);
+        var block = new Game.Block(type, {width: 20, height: 20, left: 10, top: 10})
+        this.addChild(block);
     }
 }
 

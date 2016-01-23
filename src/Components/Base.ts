@@ -57,6 +57,7 @@ module Components {
                 console.log(Base.designWidth, Base.designHeight);
                 console.log(Base.realWidth, Base.realHeight);
                 console.log(Base.leftWhite, Base.topWhite);
+                console.log('>>>>>>>>>>>>>>>>>>>')
             }
         }
 
