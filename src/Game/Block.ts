@@ -6,17 +6,23 @@ module Game {
 	 */
 	export class Block extends Components.Matrix
 	{
-//        private boxStore: Components.Box[] = [];
-        private type: BlockType;
-        public constructor(type:BlockType,  geometry: {
+        public constructor(public type:BlockType,  geometry: {
             width: number, height: number, left: number, top: number 
         }) 
 		{
             super(type.m, type.n, geometry, (id, geometry) => {
                 var alpha = type.shape[id];
-                return new Components.Box(id, 0xaaafff, geometry, alpha);
+                return new Components.Box(id, 0x00ff00, geometry, alpha);
             });
             
 		}
+		
+        public changeSize(width: number, height: number, left:number, top: number)
+        {
+            var newBlock: Block = new Block(this.type, {width: width, height: height, left: left, top: top})
+            this.parent.addChild(newBlock);
+            this.parent.removeChild(this);
+            return newBlock;
+        }
 	}
 }

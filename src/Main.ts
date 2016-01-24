@@ -115,13 +115,19 @@ class Main extends egret.DisplayObjectContainer {
      */
     private createGameScene():void 
     {
-        Components.Base.init(120, 200); // 初始化设计稿高宽
-//        var obj = new Game.Matrix();
-//        this.addChild(obj);
-        var type = new Game.BlockType(1);
-//        console.log(type.m);
-        var block = new Game.Block(type, {width: 20, height: 20, left: 10, top: 10})
-        this.addChild(block);
+        Components.Base.init(Config.STAGE_DESIGN_WIDTH, Config.STAGE_DESIGN_HEIGHT); // 初始化设计稿高宽
+        var obj = new Game.Matrix();
+        this.addChild(obj);
+        var area = new Game.BlockArea();
+        this.addChild(area);
+//        var type = new Game.BlockType(1);
+//        var block = new Game.Block(type, {width: 20, height: 20, left: 10, top: 10})
+//        this.addChild(block);
+//        block.touchEnabled = true;
+//        block.addEventListener(egret.TouchEvent.TOUCH_TAP, (e) => {
+//            block = block.changeSize((obj.boxWidth + Game.Matrix.padding)*block.type.n, (obj.boxHeight + Game.Matrix.padding)*block.type.m, 8, 48);
+//            obj.attach(block);
+//        }, this)
     }
 }
 

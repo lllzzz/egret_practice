@@ -10,10 +10,11 @@ module Game {
          * 类型配置
          */ 
         protected static TYPES: any[] = [
-            {m: 1, n: 1, shape: [1]},
-            {m: 2, n: 2, shape: [1, 1, 1, 0]},
+            { m: 1, n: 1, shape: [1]},
+            { m: 2, n: 2, shape: [1, 1, 1, 0]},
+            { m: 5, n: 1, shape: [1, 1, 1, 1, 1]},
         ];
-        
+        public static MAX_SIZE = 5;
         public shape: number[];
         public constructor(protected type?: number) 
         {
