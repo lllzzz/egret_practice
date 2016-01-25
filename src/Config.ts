@@ -19,6 +19,7 @@ class Config
     public static BLOCK_DESIGN_TOP = 150;
     public static BLOCK_DESGIN_BASE_LEFT = 10;
     public static BLOCK_DESGIN_BASE_PADDING = 5;
+    public static BLOCK_TYPE_MAX_SIZE = 5;
     
     
 }
