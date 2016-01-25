@@ -47,7 +47,6 @@ module Game {
         public attachOnEnd()
         {
             if (!Game.Matrix.getInstence().attach(this)) {
-                console.log('hahah')
                 var tw = egret.Tween.get(this);
                 tw.to({
                     scaleX: 1,
@@ -56,8 +55,10 @@ module Game {
                     y: this.beginY,
                     width: this.width / this.newScale,
                     height: this.height / this.newScale,
-                }, 200)
+                }, 200);
+                return false;
             }
+            return true;
         }
 	}
 }

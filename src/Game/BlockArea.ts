@@ -8,6 +8,7 @@ module Game {
 	{
         private static BLOCK_BOX_SIZE;
         private currBlock: Block;
+        private leftBlock: number;
         
         public constructor(private stage: egret.DisplayObjectContainer) 
         {
@@ -18,6 +19,7 @@ module Game {
 	    
 	    public makeArea() 
 	    {
+            this.leftBlock = 3;
             for (var i = 0; i < 3; i++) {
                 var b = this.makeBlock(i);
                 this.stage.addChild(b);
@@ -58,7 +60,10 @@ module Game {
         private endMoveBlock()
         {
             if (this.currBlock == null) return;
-            this.currBlock.attachOnEnd();
+            if (this.currBlock.attachOnEnd()) {
+                console.log(this.leftBlock);
+                if (--this.leftBlock == 0) this.makeArea();
+            }
             this.currBlock = null;
         }
 	}
