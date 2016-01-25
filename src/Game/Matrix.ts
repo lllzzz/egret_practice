@@ -35,6 +35,7 @@ module Game {
                 blockY: number = block.y + block.getBox().height / 2;
             var [i, j] = this.getPositionByXY(blockX, blockY);
             if (isNaN(i)) return false;
+            if (!this.canSet(i, j, block)) return false;
             var [x, y] = this.getStageXY(i, j);
             var tw = egret.Tween.get(block);
             tw.to({ x: x, y: y }, 200).call(() => {
@@ -47,6 +48,13 @@ module Game {
                 });
                 block.parent.removeChild(block);    
             })
+            return true;
+        }
+        
+        private canSet(i, j, block: Block): boolean
+        {
+            if (i + block.m > this.m) return false;
+            if (j + block.n > this.n) return false;
             return true;
         }
 	}

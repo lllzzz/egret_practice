@@ -61,7 +61,6 @@ module Game {
         {
             if (this.currBlock == null) return;
             if (this.currBlock.attachOnEnd()) {
-                console.log(this.leftBlock);
                 if (--this.leftBlock == 0) this.makeArea();
             }
             this.currBlock = null;
