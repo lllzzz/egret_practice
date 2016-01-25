@@ -6,8 +6,8 @@ module Components {
 	 */
 	export class Base extends egret.Sprite
 	{
-        protected static stageWidth: number = 0;
-        protected static stageHeight: number = 0;
+        public static stageWidth: number = 0;
+        public static stageHeight: number = 0;
 
         protected static designWidth: number = 0;
         protected static designHeight: number = 0;
@@ -84,7 +84,6 @@ module Components {
          */
         public setPossion(left: number, top: number): void
         {
-            console.log(this.hasParent);
             if (Base.standard === Base.HEIGHT_BASE) {
                 this.y = (top / Base.designHeight) * Base.realHeight;
                 this.x = (left / Base.designWidth) * Base.realWidth;

@@ -9,20 +9,21 @@ module Components {
         public boxStore: Box[] = [];
         public boxWidth: number = 0;
         public boxHeight: number = 0;
-        public static padding: number = Config.MATRIX_DESIGN_PADDING;
+        public padding: number = Config.MATRIX_DESIGN_PADDING;
         public constructor(public m:number, public n: number, geometry: {
             width: number, height: number, left: number, top: number },
             newBoxCallback: Function, hasParent: boolean = false) 
         {
             super(geometry.width, geometry.height, geometry.left, geometry.top, hasParent);
             var boxStore: Box[] = [];
-            var boxWidth: number = geometry.width / n - Matrix.padding,
-                boxHeight: number = geometry.height / m - Matrix.padding;
+            this.padding = Math.min(geometry.width / n, geometry.height / m) / 10;
+            var boxWidth: number = geometry.width / n - this.padding,
+                boxHeight: number = geometry.height / m - this.padding;
             for(var i = 0; i < m * n; i++) {
                 var _i = Math.floor(i / n),
                     _j = i % n;
-                var _x = (boxWidth + Matrix.padding) * _j,
-                    _y = (boxHeight + Matrix.padding) * _i;
+                var _x = (boxWidth + this.padding) * _j,
+                    _y = (boxHeight + this.padding) * _i;
                 var _box = newBoxCallback.call(this, i, { width: boxWidth, height: boxHeight, left: _x, top: _y })
                 boxStore.push(_box);
                 this.addChild(_box);
