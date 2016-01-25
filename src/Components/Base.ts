@@ -84,6 +84,7 @@ module Components {
          */
         public setPossion(left: number, top: number): void
         {
+            console.log(this.hasParent);
             if (Base.standard === Base.HEIGHT_BASE) {
                 this.y = (top / Base.designHeight) * Base.realHeight;
                 this.x = (left / Base.designWidth) * Base.realWidth;

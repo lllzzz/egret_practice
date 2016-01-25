@@ -10,10 +10,11 @@ module Game {
             width: number, height: number, left: number, top: number 
         }) 
 		{
-            super(type.m, type.n, geometry, (id, geometry) => {
+            super(type.m, type.n, geometry, (id, geometry) =>
+            {
                 var alpha = type.shape[id];
                 return new Components.Box(id, 0x00ff00, geometry, alpha);
-            });
+            }, true);
             
 		}
 		

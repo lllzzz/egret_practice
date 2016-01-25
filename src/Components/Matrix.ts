@@ -12,9 +12,9 @@ module Components {
         public static padding: number = Config.MATRIX_DESIGN_PADDING;
         public constructor(public m:number, public n: number, geometry: {
             width: number, height: number, left: number, top: number },
-            newBoxCallback: Function) 
+            newBoxCallback: Function, hasParent: boolean = false) 
         {
-            super(geometry.width, geometry.height, geometry.left, geometry.top);
+            super(geometry.width, geometry.height, geometry.left, geometry.top, hasParent);
             var boxStore: Box[] = [];
             var boxWidth: number = geometry.width / n - Matrix.padding,
                 boxHeight: number = geometry.height / m - Matrix.padding;
