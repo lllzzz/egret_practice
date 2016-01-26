@@ -29,7 +29,7 @@ module Game {
             }
             this.m = BlockType.TYPES[this.type].m;
             this.n = BlockType.TYPES[this.type].n;
-            this.shape = BlockType.TYPES[this.type].shape;
+            this.shape = BlockType.TYPES[this.type].shape.slice(0);
             this.trans();
 		}
         
