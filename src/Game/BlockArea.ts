@@ -28,7 +28,7 @@ module Game {
 	    
         private makeBlock(index: number = 0): Block
 	    {
-            var type = new BlockType();
+            var type = new BlockType(4);
             var [x, y] = this.getPosition(type);
             x += index * (Config.BLOCK_DESIGN_SIZE + Config.BLOCK_DESGIN_BASE_PADDING) + Config.BLOCK_DESGIN_BASE_LEFT;
             y += Config.BLOCK_DESIGN_TOP;

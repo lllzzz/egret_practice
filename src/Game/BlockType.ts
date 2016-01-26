@@ -44,6 +44,30 @@ module Game {
             if (Math.random() > 1 / num) {
                 this.shape.sort(() => { return Math.random() < 0.5 ? -1 : 1; });
             }
+            // 检查首行是否全空
+            var isFirstLineEmpty = true;
+            for (var k = 0; k < this.n; k ++) {
+                if (this.shape[k]) isFirstLineEmpty = false;
+            }
+            if (isFirstLineEmpty) {
+                this.m--;
+                this.shape.splice(this.n);
+            }
+            
+            // 检查首列是否全空
+            var isFirstVerticalEmpty = true;
+            for (var k = 0; k < this.m; k++) {
+                if (this.shape[k * this.n]) isFirstVerticalEmpty = false;
+            }
+            if (isFirstVerticalEmpty) {
+                this.n--;
+                var _shape = [];
+                this.shape.forEach((point, index) => {
+                    if (index % this.n) _shape.push(point);
+                })
+                this.shape = _shape.splice(0);
+            }
+                
         }
  
 	}

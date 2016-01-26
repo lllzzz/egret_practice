@@ -38,12 +38,8 @@ module Game {
             var [i, j] = this.getPositionByXY(blockX, blockY);
             if (isNaN(i)) return false;
             if (!this.canSet(i, j, block)) return false;
-            console.log(block.type.shape);
-            console.log(this.getPart(i, j, block.m, block.n));
+            if (!this.canSet2(i, j, block)) return false;
             this.setPart(i, j, block);
-            console.log(this.getPart(i, j, block.m, block.n));
-            console.log(this.getLineSetLog(i))
-            console.log(this.getVerticalSetLog(j))
             var [x, y] = this.getStageXY(i, j);
             var tw = egret.Tween.get(block);
             tw.to({ x: x, y: y }, 200).call(() => {
@@ -63,6 +59,15 @@ module Game {
         {
             if (i + block.m > this.m) return false;
             if (j + block.n > this.n) return false;
+            return true;
+        }
+        
+        protected canSet2(i, j, block: Block): boolean
+        {
+            var matrixShape = this.getPart(i, j, block.m, block.n);
+            for (var k = 0; k < matrixShape.length; k++) {
+                if (matrixShape[k] + block.type.shape[k] > 1) return false;
+            }
             return true;
         }
         
