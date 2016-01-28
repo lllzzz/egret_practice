@@ -46,26 +46,43 @@ module Game {
             }
             // 检查首行是否全空
             var isFirstLineEmpty = true;
+            var isLastLineEmpty = true;
             for (var k = 0; k < this.n; k ++) {
                 if (this.shape[k]) isFirstLineEmpty = false;
+                if (this.shape[k + (this.n) * (this.m - 1)]) isLastLineEmpty = false;
             }
             if (isFirstLineEmpty) {
+                this.shape = this.shape.slice(this.n);
                 this.m--;
-                this.shape.splice(this.n);
+            }
+            if (isLastLineEmpty) {
+                this.shape = this.shape.slice(0, this.n * (this.m - 1));
+                this.m--;
             }
             
             // 检查首列是否全空
             var isFirstVerticalEmpty = true;
+            var isLastVerticalEmpty = true;
             for (var k = 0; k < this.m; k++) {
                 if (this.shape[k * this.n]) isFirstVerticalEmpty = false;
+                if (this.shape[(k+1) * this.n - 1]) isLastVerticalEmpty = false;
             }
             if (isFirstVerticalEmpty) {
-                this.n--;
                 var _shape = [];
                 this.shape.forEach((point, index) => {
                     if (index % this.n) _shape.push(point);
                 })
-                this.shape = _shape.splice(0);
+                this.shape = _shape.slice(0);
+                this.n--;
+            }
+            if (isLastVerticalEmpty) {
+                var _shape = [];
+                this.shape.forEach((point, index) =>
+                {
+                    if (index % this.n !== this.n - 1) _shape.push(point);
+                })
+                this.shape = _shape.slice(0);
+                this.n--;
             }
                 
         }
